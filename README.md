@@ -1,11 +1,10 @@
-# Quizz Menggunakan Laravel Inertia Vue
+# Quizz
 
 ## Deskripsi
 
 Quizz dibuat menggunakan laravel inertia vuejs, Layaknya Quizz pada umumnya di project ini dapat membuat Soal dan jawaban. project ini belum selesai
 
 
-Project ini adalah ...
 
 ## Instalasi
 
