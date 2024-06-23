@@ -52,7 +52,16 @@ class AnswerController extends Controller
      */
     public function update(Request $request, Answer $answer)
     {
-        //
+        $answer = $request->all();
+        
+        foreach($answer as $a){
+            $id = $a['id'];
+            $updateAnswer = Answer::findOrFail($id);
+            $updateAnswer->answer=$a['answer'];
+            $updateAnswer->correct_answer=$a['correct_answer'];
+            $updateAnswer->save();
+        }
+        return redirect('/questions')->With('success', 'Answer has been Updated');
     }
 
     /**

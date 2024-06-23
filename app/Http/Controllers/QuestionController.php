@@ -14,7 +14,10 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Questions');
+        $questions = Question::with('answer')->get();
+        return Inertia::render('Questions',[
+            'questions' => $questions
+        ]);
     }
 
     /**
@@ -69,14 +72,19 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $id = $request['id'];
+        $editQuestion = Question::findOrFail($id);
+        $editQuestion->question = $request['question'];
+        $editQuestion->save();
+        return redirect('/questions')->with('success','Questions has been updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Question $question)
+    public function destroy(Request $request, Question $question)
     {
-        //
+        $question->delete();
+        return redirect('/questions');
     }
 }
